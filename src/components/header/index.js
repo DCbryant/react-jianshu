@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { actionCreators } from './store';
+import * as loginActionCreators from '../../pages/login/store/actionCreators';
 import { 
     HeaderWrapper,
     Logo,
@@ -57,14 +58,18 @@ class Header extends PureComponent {
     }
 
     render(){
-        const { focused, handleInputFocus, handleInputBlurs, list } = this.props;
+        const { focused, handleInputFocus, handleInputBlurs, list, login,logOut } = this.props;
         return (
             <HeaderWrapper>
                 <Link to="/"><Logo /></Link>
                 <Nav>
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
-                    <NavItem className="right">登陆</NavItem>
+                    {
+                        login ? 
+                        <NavItem className="right" onClick={logOut} style={{cursor: 'pointer'}}>退出</NavItem> : 
+                        <Link to="/login"><NavItem className="right">登陆</NavItem></Link>
+                    }
                     <NavItem className="right">
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
@@ -85,10 +90,12 @@ class Header extends PureComponent {
                     </SearchWrapper>
                 </Nav>
                 <Addition>
-                    <Button className="writing">
-                        <i className="iconfont">&#xe61b;</i>
-                        写文章
-                    </Button>
+                   <Link to="/post">
+                        <Button className="writing">
+                            <i className="iconfont">&#xe61b;</i>
+                            写文章
+                        </Button>
+                   </Link>
                     <Button className="reg">注册</Button>
                 </Addition>
             </HeaderWrapper>
@@ -105,13 +112,13 @@ const mapStateToProps = (state) => {
         list: state.getIn(['header','list']),
         page: state.getIn(['header','page']),
         totalPage: state.getIn(['header','totalPage']),
+        login: state.getIn(['login','login'])
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleInputFocus(list){
-            console.log(list)
             if(list.size === 0){
                 dispatch(actionCreators.getList());
             }
@@ -142,7 +149,10 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(actionCreators.pageChange(1));
             }
             
-        } 
+        }, 
+        logOut(){
+            dispatch(loginActionCreators.logOut());
+        }
     };
 }
 

@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "data": {
+        "title" : "从阿里云函数计算看Serverless的演进与思考",
+        "content": "<img src='https://upload-images.jianshu.io/upload_images/599584-9b85e9853b87a72d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700' alt='' /><p><b>应用被解耦为细粒度的函数，</b>函数是部署和运行的基本单位。用户只为实际使用的资源付费。可见，serverless 计算能够帮助应用开发者摆脱服务器等底层基础设施管理的负担，专注于业务层的创新。</p><p>无服务器计算是指开发者在构建和运行应用时无需管理服务器等基础设施。应用被解耦为细粒度的函数，函数是部署和运行的基本单位。用户只为实际使用的资源付费。可见，serverless 计算能够帮助应用开发者摆脱服务器等底层基础设施管理的负担，专注于业务层的创新。</p>"
+    }
+}

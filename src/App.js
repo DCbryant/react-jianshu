@@ -4,7 +4,10 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import store from './store';
 import Header from './components/header';
 import Home from './pages/home';
-import Detail from './pages/detail';
+import Detail from './pages/detail/loadable';
+import Login from './pages/login';
+import Post from './pages/post';
+
 class App extends PureComponent {
   render() {
     return (
@@ -13,7 +16,9 @@ class App extends PureComponent {
           <div>
             <Header />
             <Route path="/" exact component={Home} />
-            <Route path="/detail" component={Detail} />
+            <Route path="/login" component={Login} />
+            <Route path="/post" component={Post} />
+            <Route path="/detail/:id" component={Detail} />
           </div>
         </BrowserRouter>
       </Provider>
